@@ -33,9 +33,13 @@ class BotsPage extends React.Component {
   }
 
   removeBotClick = (bot) => {
-    const array = [...this.state.botArmy]
-
-    debugger
+    const arr = [...this.state.botArmy]
+    for( var i = 0; i < arr.length; i++){
+      if ( arr[i].id === bot.id) {
+        arr.splice(i, 1);
+        this.setState( { botArmy: arr })
+      }
+    }
 
   }
 
@@ -54,5 +58,12 @@ class BotsPage extends React.Component {
 }
 
 export default BotsPage;
+
+// for( var i = 0; i < arr.length; i++){
+//    if ( arr[i] === 5) {
+//      arr.splice(i, 1);
+//      i--;
+//    }
+// }
 
 // this.setState( {botArmy: [...this.state.botArmy, ]} )
