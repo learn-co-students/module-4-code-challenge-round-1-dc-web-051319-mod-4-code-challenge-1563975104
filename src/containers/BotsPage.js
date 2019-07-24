@@ -9,7 +9,8 @@ class BotsPage extends React.Component {
   constructor() {
     super()
       this.state = {
-        allBots: []
+        allBots: [],
+        botArmy: []
       }
   }
 
@@ -22,11 +23,20 @@ class BotsPage extends React.Component {
       })
   }
 
+  botClick = (bot) =>  {
+    if (!this.state.botArmy.includes(bot)) {
+      this.setState( {botArmy: [...this.state.botArmy, bot]})
+    } else {
+      alert("Bot Already Enlisted!")
+    }
+
+  }
+
   render() {
     return (
       <div>
-        <YourBotArmy />
-        <BotCollection bots={this.state.allBots} />
+        <YourBotArmy botArmy={this.state.botArmy} botClick={this.botClick}/>
+        <BotCollection bots={this.state.allBots} botClick={this.botClick}/>
 
       </div>
     );
@@ -35,3 +45,5 @@ class BotsPage extends React.Component {
 }
 
 export default BotsPage;
+
+// this.setState( {botArmy: [...this.state.botArmy, ]} )

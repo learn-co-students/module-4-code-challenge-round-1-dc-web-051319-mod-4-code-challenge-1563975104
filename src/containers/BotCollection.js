@@ -11,6 +11,7 @@ class BotCollection extends React.Component {
           {this.props.bots.map(botObj => <BotCard
             bot={botObj}
             key={botObj.id}
+            botClick={this.props.botClick}
             />)}
     		</div>
   	  </div>
