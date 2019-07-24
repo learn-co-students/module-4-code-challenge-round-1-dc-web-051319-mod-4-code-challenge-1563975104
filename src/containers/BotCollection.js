@@ -3,22 +3,41 @@ import BotCard from "../components/BotCard";
 import BotSpecs from "../components/BotSpecs"
 class BotCollection extends React.Component {
 	state = {
-		isClicked: true
+		thisBot: {},
+		click: false 
 	}
 
-	changeIsClicked = () => {
-
+	clickHandler = (bot) => {
+		this.setState({
+			click: true,
+			thisBot: bot
+		})
 	}
-
+	
+	changeClick = () => {
+		this.setState({
+			click: false
+		})
+	}
   render(){
   	return (
   	  <div className="ui four column grid">
     		<div className="row">
-    		  {
-				  this.props.bots.map(bot => (<BotCard key={bot.id} bot={bot} addMyBots={this.props.addMyBots} />))
-				 
+			  {	this.state.click ?
+				(<BotSpecs 
+					bot={this.state.thisBot} 
+					addToMyBots={this.props.addMyBots} 
+					changeClick={this.changeClick}
+				/>)
+				  : 
+				  this.props.bots.map(bot => 
+					(<BotCard 
+						key={bot.id} 
+						bot={bot} 
+						showBot={this.clickHandler} 
+					/>))
 			  }
-			  { this.props.bots.map(bot => (<BotSpecs key={bot.id} bot={bot}/>))}
+			  
     		  
     		</div>
   	  </div>

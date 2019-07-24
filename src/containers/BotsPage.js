@@ -17,11 +17,9 @@ class BotsPage extends React.Component {
   }
 
   addMyBots = (bot) => {
-    
     let mybots = this.state.myBots.map(myBot => myBot.id)
       if(mybots.includes(bot.id)){
         return
-        
       }else{
         this.setState({
           myBots: [...this.state.myBots, bot]
@@ -29,8 +27,6 @@ class BotsPage extends React.Component {
       }}
      
 
-        
-    
 
   removeBot = (bot) => {
     let lessBots = this.state.myBots.filter(myBot => { return myBot.id !== bot.id
@@ -44,10 +40,14 @@ class BotsPage extends React.Component {
     console.log(this.state.myBots)
     return (
       <div>
-        <YourBotArmy myBots={this.state.myBots} takeAwayBots={this.removeBot}/>
-        <BotCollection bots={this.state.bots} addMyBots={this.addMyBots}/>
-        
-        {/* put your components here */}
+        <YourBotArmy 
+          myBots={this.state.myBots} 
+          takeAwayBots={this.removeBot}
+        />
+        <BotCollection 
+          bots={this.state.bots} 
+          addMyBots={this.addMyBots}
+        />
       </div>
     );
   }
