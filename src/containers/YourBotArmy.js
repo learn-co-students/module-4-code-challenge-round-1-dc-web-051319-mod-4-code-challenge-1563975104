@@ -13,7 +13,7 @@ class YourBotArmy extends React.Component {
             {this.props.botArmy.map(botObj => <BotCard
               bot={botObj}
               key={botObj.id}
-              botClick={this.props.botClick}
+              botClick={this.props.removeBotClick}
               />)}
           </div>
         </div>

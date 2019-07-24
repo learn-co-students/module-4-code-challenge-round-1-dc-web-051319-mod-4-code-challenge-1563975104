@@ -32,10 +32,19 @@ class BotsPage extends React.Component {
 
   }
 
+  removeBotClick = (bot) => {
+    const array = [...this.state.botArmy]
+
+    debugger
+
+  }
+
+
+
   render() {
     return (
       <div>
-        <YourBotArmy botArmy={this.state.botArmy} botClick={this.botClick}/>
+        <YourBotArmy botArmy={this.state.botArmy} removeBotClick={this.removeBotClick}/>
         <BotCollection bots={this.state.allBots} botClick={this.botClick}/>
 
       </div>
