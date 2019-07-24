@@ -1,12 +1,56 @@
 import React from "react";
+import BotCollection from './BotCollection'
+import YourBotArmy from './YourBotArmy'
+
 
 class BotsPage extends React.Component {
-  //start here with your code for step one
+
+
+  constructor() {
+    super()
+      this.state = {
+        allBots: [],
+        botArmy: []
+      }
+  }
+
+
+  componentDidMount() {
+    fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
+      .then(resp => resp.json())
+      .then(object => {
+        this.setState( { allBots: object } )
+      })
+  }
+
+  botClick = (bot) =>  {
+    if (!this.state.botArmy.includes(bot)) {
+      this.setState( {botArmy: [...this.state.botArmy, bot]})
+    } else {
+      alert("Bot Already Enlisted!")
+    }
+
+  }
+
+  removeBotClick = (bot) => {
+    const arr = [...this.state.botArmy]
+    for( var i = 0; i < arr.length; i++){
+      if ( arr[i].id === bot.id) {
+        arr.splice(i, 1);
+        this.setState( { botArmy: arr })
+      }
+    }
+
+  }
+
+
 
   render() {
     return (
       <div>
-        {/* put your components here */}
+        <YourBotArmy botArmy={this.state.botArmy} removeBotClick={this.removeBotClick}/>
+        <BotCollection bots={this.state.allBots} botClick={this.botClick}/>
+
       </div>
     );
   }
@@ -14,3 +58,12 @@ class BotsPage extends React.Component {
 }
 
 export default BotsPage;
+
+// for( var i = 0; i < arr.length; i++){
+//    if ( arr[i] === 5) {
+//      arr.splice(i, 1);
+//      i--;
+//    }
+// }
+
+// this.setState( {botArmy: [...this.state.botArmy, ]} )
